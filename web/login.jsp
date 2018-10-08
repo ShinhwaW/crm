@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/frameset.dtd">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
@@ -28,7 +29,7 @@
     <META content="MSHTML 6.00.6000.16809" name=GENERATOR>
 </HEAD>
 <BODY>
-<FORM id=form1 name=form1 onsubmit="javascript:return WebForm_OnSubmit();" method=post>
+<FORM id=form1 name=form1 action="${pageContext.request.contextPath}/user_login.action" method=post>
 
     <DIV id=UpdatePanel1>
         <DIV id=div1
@@ -53,14 +54,16 @@
                                 <TD colSpan=2 height=35></TD>
                             </TR>
                             <TR>
-                                <TD width=360></TD>
+                                <TD width=360>
+                                </TD>
                                 <TD>
                                     <TABLE cellSpacing=0 cellPadding=2 border=0>
                                         <TBODY>
                                         <TR>
+                                            <s:actionerror/>
                                             <TD style="HEIGHT: 28px" width=80>登 录 名：</TD>
                                             <TD style="HEIGHT: 28px" width=150><INPUT id=txtName
-                                                                                      style="WIDTH: 130px" name=txtName>
+                                                                                      style="WIDTH: 130px" name=user_code>
                                             </TD>
                                             <TD style="HEIGHT: 28px" width=370><SPAN
                                                     id=RequiredFieldValidator3
@@ -70,7 +73,7 @@
                                         <TR>
                                             <TD style="HEIGHT: 28px">登录密码：</TD>
                                             <TD style="HEIGHT: 28px"><INPUT id=txtPwd style="WIDTH: 130px"
-                                                                            type=password name=txtPwd></TD>
+                                                                            type=password name=user_password></TD>
                                             <TD style="HEIGHT: 28px"><SPAN id=RequiredFieldValidator4
                                                                            style="FONT-WEIGHT: bold; VISIBILITY: hidden; COLOR: white">请输入密码</SPAN>
                                             </TD>

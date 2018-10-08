@@ -5,7 +5,16 @@ public class User {
     private String user_code;
     private String user_name;
     private String user_password;
-    private String state;
+
+    public String getUser_state() {
+        return user_state;
+    }
+
+    public void setUser_state(String user_state) {
+        this.user_state = user_state;
+    }
+
+    private String user_state;
 
     public long getUser_id() {
         return user_id;
@@ -39,20 +48,12 @@ public class User {
         this.user_password = user_password;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public User(long user_id, String user_code, String user_name, String user_password, String state) {
         this.user_id = user_id;
         this.user_code = user_code;
         this.user_name = user_name;
         this.user_password = user_password;
-        this.state = state;
+        this.user_state = state;
     }
 
     public User() {
@@ -65,7 +66,7 @@ public class User {
                 ", user_code='" + user_code + '\'' +
                 ", user_name='" + user_name + '\'' +
                 ", user_password='" + user_password + '\'' +
-                ", state='" + state + '\'' +
+                ", user_state='" + user_state + '\'' +
                 '}';
     }
 }
