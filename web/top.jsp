@@ -58,7 +58,7 @@ P {
 								</TR>
 								<TR>
 									<TD height=35 align="right">
-										<%--当前用户：<s:property value="#session.loginUser.user_name"/>--%>
+										当前用户：<s:property value="#session.loginUser.user_name"/>
 										&nbsp;&nbsp;&nbsp;&nbsp;
 										<A href="#" target=_top><FONT color=red>修改密码</FONT></A>
 										&nbsp;&nbsp;&nbsp;&nbsp;

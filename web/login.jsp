@@ -60,7 +60,7 @@
                                     <TABLE cellSpacing=0 cellPadding=2 border=0>
                                         <TBODY>
                                         <TR>
-                                            <s:actionerror/>
+                                            <s:actionerror style="color:red"/>
                                             <TD style="HEIGHT: 28px" width=80>登 录 名：</TD>
                                             <TD style="HEIGHT: 28px" width=150><INPUT id=txtName
                                                                                       style="WIDTH: 130px" name=user_code>
