@@ -41,6 +41,7 @@
         <property name="mappingResources">
             <list>
                 <value>cn/shinhwa/crm/domain/User.hbm.xml</value>
+                <value>cn/shinhwa/crm/domain/Customer.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -50,13 +51,31 @@
         <property name="userService" ref="userService">
         </property>
     </bean>
+
+    <bean id="customerAction" class="cn.shinhwa.crm.web.action.CustomerAction">
+        <property name="customerService" ref="customerService">
+        </property>
+    </bean>
+
     <!--配置Service-->
     <bean id="userService" class="cn.shinhwa.crm.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao">
         </property>
     </bean>
+
+    <bean id="customerService" class="cn.shinhwa.crm.service.impl.CustomerServiceImpl">
+        <property name="customerDao" ref="customerDao">
+        </property>
+    </bean>
+
     <!--配置Dao-->
-    <bean id="userDao" class="cn.shinhwa.crm.dao.impl.UserDaoImpl" >
+    <bean id="userDao" class="cn.shinhwa.crm.dao.impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory">
+
+        </property>
+    </bean>
+
+    <bean id="customerDao" class="cn.shinhwa.crm.dao.impl.CustomerDaoImpl">
         <property name="sessionFactory" ref="sessionFactory">
 
         </property>
@@ -71,7 +90,7 @@
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             <!-- 所有find开头的方法为只读，所有查询方法都以find开头 -->
-            <tx:method name="find*" read-only="true" />
+            <tx:method name="find*" read-only="true"/>
             <!-- 其余方法如果没有事务的时候，就开启新事务运行该方法，否则使用已有的事务运行该方法 -->
             <!-- 关闭read-only保证save*,update*,delete*等方法可以修改数据 -->
             <tx:method name="*" propagation="REQUIRED" read-only="false"/>
@@ -80,7 +99,7 @@
 
     <!-- 设置com.sx.dao包下及其子包下的类的所有方法都加上txAdvice事务通知切片（主要用于自动实现Hibernate事务的提交回滚等） -->
     <aop:config>
-        <aop:pointcut id="DaoPointCut" expression="execution(* cn.shinhwa.crm.dao..*.*(..))" />
+        <aop:pointcut id="DaoPointCut" expression="execution(* cn.shinhwa.crm.dao..*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="DaoPointCut"/>
     </aop:config>
 

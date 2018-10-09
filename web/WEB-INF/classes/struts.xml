@@ -10,6 +10,8 @@
 			<result name="login">/login.jsp</result>
 			<result name="success" type="redirect">/index.jsp</result>
 		</action>
-
+        <action name="customer_*" class="cn.shinhwa.crm.web.action.CustomerAction" method="{1}">
+            <result name="saveUI">/jsp/customer/add.jsp</result>
+        </action>
 	</package>
 </struts>
