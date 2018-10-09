@@ -9,6 +9,7 @@
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="login">/login.jsp</result>
 			<result name="success" type="redirect">/index.jsp</result>
+			<result name="quit" type="redirect">/login.jsp</result>
 		</action>
         <action name="customer_*" class="cn.shinhwa.crm.web.action.CustomerAction" method="{1}">
             <result name="saveUI">/jsp/customer/add.jsp</result>

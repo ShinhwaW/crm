@@ -62,7 +62,7 @@ P {
 										&nbsp;&nbsp;&nbsp;&nbsp;
 										<A href="#" target=_top><FONT color=red>修改密码</FONT></A>
 										&nbsp;&nbsp;&nbsp;&nbsp;
-										<A href="#" target=_top><FONT color=red>安全退出</FONT></A>
+										<A href="${pageContext.request.contextPath}/user_quit.action" target=_top><FONT color=red>安全退出</FONT></A>
 									</TD>
 								</TR>
 							</TBODY>

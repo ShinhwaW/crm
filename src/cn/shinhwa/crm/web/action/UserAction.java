@@ -36,5 +36,9 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         }
     }
 
+    public String quit() {
+        return "quit";
+    }
+
 
 }
