@@ -42,6 +42,7 @@
             <list>
                 <value>cn/shinhwa/crm/domain/User.hbm.xml</value>
                 <value>cn/shinhwa/crm/domain/Customer.hbm.xml</value>
+                <value>cn/shinhwa/crm/domain/BaseDict.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -52,19 +53,9 @@
         </property>
     </bean>
 
-    <bean id="customerAction" class="cn.shinhwa.crm.web.action.CustomerAction" scope="prototype">
-        <property name="customerService" ref="customerService">
-        </property>
-    </bean>
-
     <!--配置Service-->
     <bean id="userService" class="cn.shinhwa.crm.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao">
-        </property>
-    </bean>
-
-    <bean id="customerService" class="cn.shinhwa.crm.service.impl.CustomerServiceImpl">
-        <property name="customerDao" ref="customerDao">
         </property>
     </bean>
 
@@ -75,9 +66,33 @@
         </property>
     </bean>
 
+    <bean id="customerAction" class="cn.shinhwa.crm.web.action.CustomerAction" scope="prototype">
+        <property name="customerService" ref="customerService">
+        </property>
+    </bean>
+
+    <bean id="customerService" class="cn.shinhwa.crm.service.impl.CustomerServiceImpl">
+        <property name="customerDao" ref="customerDao">
+        </property>
+    </bean>
+
     <bean id="customerDao" class="cn.shinhwa.crm.dao.impl.CustomerDaoImpl">
         <property name="sessionFactory" ref="sessionFactory">
+        </property>
+    </bean>
 
+    <bean id="baseDictAction" class="cn.shinhwa.crm.web.action.BaseDictAction" scope="prototype">
+        <property name="baseDictService" ref="baseDictService">
+        </property>
+    </bean>
+
+    <bean id="baseDictService" class="cn.shinhwa.crm.service.impl.BaseDictServiceImpl">
+        <property name="baseDictDao" ref="baseDictDao">
+        </property>
+    </bean>
+
+    <bean id="baseDictDao" class="cn.shinhwa.crm.dao.impl.BaseDictDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory">
         </property>
     </bean>
 

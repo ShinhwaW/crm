@@ -9,10 +9,15 @@
 		</id>
 		
 		<property name="cust_name" column="cust_name"/>
-		<property name="cust_source" column="cust_source"/>
-		<property name="cust_industry" column="cust_industry"/>
-		<property name="cust_level" column="cust_level"/>
+		<!--<property name="cust_source" column="cust_source"/>-->
+		<!--<property name="cust_industry" column="cust_industry"/>-->
+		<!--<property name="cust_level" column="cust_level"/>-->
 		<property name="cust_phone" column="cust_phone"/>
 		<property name="cust_mobile" column="cust_mobile"/>
+		
+		<many-to-one name="baseDictSource" class="cn.shinhwa.crm.domain.BaseDict" column="cust_source"/>
+		<many-to-one name="baseDictIndustry" class="cn.shinhwa.crm.domain.BaseDict" column="cust_industry"/>
+		<many-to-one name="baseDictLevel" class="cn.shinhwa.crm.domain.BaseDict" column="cust_level"/>
+
 	</class>
 </hibernate-mapping>
