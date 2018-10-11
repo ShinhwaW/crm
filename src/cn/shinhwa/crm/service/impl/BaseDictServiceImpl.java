@@ -17,4 +17,9 @@ public class BaseDictServiceImpl implements BaseDictService {
     public List<BaseDict> findByTypeCode(String dict_type_code) {
         return baseDictDao.findByTypeCode(dict_type_code);
     }
+
+    @Override
+    public List<BaseDict> findAll() {
+        return baseDictDao.findAll();
+    }
 }

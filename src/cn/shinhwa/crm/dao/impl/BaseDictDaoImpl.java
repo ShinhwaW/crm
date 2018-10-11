@@ -17,4 +17,13 @@ public class BaseDictDaoImpl extends HibernateDaoSupport implements BaseDictDao 
         }
         return null;
     }
+
+    @Override
+    public List<BaseDict> findAll() {
+        List<BaseDict> list = (List<BaseDict>) this.getHibernateTemplate().find("from BaseDict");
+        if (list.size()>0){
+            return list;
+        }
+        return null;
+    }
 }

@@ -10,6 +10,7 @@
 		
 		<property name="dict_type_code" column="dict_type_code"/>
 		<property name="dict_type_name" column="dict_type_name"/>
+		<property name="dict_item_name" column="dict_item_name"/>
 		<property name="dict_item_code" column="dict_item_code"/>
 		<property name="dict_sort" column="dict_sort"/>
 		<property name="dict_enable" column="dict_enable"/>

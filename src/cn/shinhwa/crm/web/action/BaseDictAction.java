@@ -35,4 +35,15 @@ public class BaseDictAction extends ActionSupport implements ModelDriven<BaseDic
         return NONE;
     }
 
+    public String findAll() throws Exception {
+        List<BaseDict> baseDictList =  baseDictService.findAll();
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.setExcludes(new String[]{"dict_sort","dict_enable","dict_memo"});
+        JSONArray jsonArray = JSONArray.fromObject(baseDictList,jsonConfig);
+        ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
+        ServletActionContext.getResponse().getWriter().write(jsonArray.toString());
+        System.out.print(jsonArray.toString());
+        return NONE;
+    }
+
 }

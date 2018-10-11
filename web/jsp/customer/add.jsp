@@ -15,12 +15,16 @@
         //页面加载异步查询字典数据
         //加载客户来源
         $(function () {
-            // alert("sdfsdfsd");
-            $.post("${pageContext.request.contextPath }/baseDict_findByTypeCode.action", {"dict_type_code": "002"}, function (data) {
-                $(data).each(function (i, n) {
-                    $("#cust_source").append("<option value='"+n.dict_id+"'>"+n.dict_type_name+"</option>")
+
+            $.post("${pageContext.request.contextPath}/baseDict_findAll.action","", function (data) {
+                $(data).each(function (j, s) {
+                    if(s.dict_type_code == "001") {
+                        $("#cust_industry").append("<option id='" + s.dict_id + "'>" + s.dict_item_name + "</option>")
+                    } else if (s.dict_type_code == "002") {
+                        $("#cust_source").append("<option id='" + s.dict_id + "'>" + s.dict_item_name + "</option>")
+                    }
                 })
-            }, "json")
+            }, "json");
         });
 
     </script>
@@ -85,8 +89,9 @@
                         </td>
                         <td>所属行业 ：</td>
                         <td>
-                            <INPUT class=textbox id=sChannel2
-                                   style="WIDTH: 180px" maxLength=50 name="cust_industry">
+                            <select id="cust_industry" name="cust_level">
+                                <option>--请选择--</option>
+                            </select>
                         </td>
                     </TR>
 
