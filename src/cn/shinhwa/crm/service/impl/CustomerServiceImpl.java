@@ -3,7 +3,9 @@ package cn.shinhwa.crm.service.impl;
 import cn.shinhwa.crm.dao.CustomerDao;
 import cn.shinhwa.crm.domain.Customer;
 import cn.shinhwa.crm.service.CustomerService;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public class CustomerServiceImpl implements CustomerService {
 
     private CustomerDao customerDao;

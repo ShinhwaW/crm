@@ -16,12 +16,14 @@
         //加载客户来源
         $(function () {
 
-            $.post("${pageContext.request.contextPath}/baseDict_findAll.action","", function (data) {
+            $.post("${pageContext.request.contextPath}/baseDict_findAll.action", "", function (data) {
                 $(data).each(function (j, s) {
-                    if(s.dict_type_code == "001") {
-                        $("#cust_industry").append("<option id='" + s.dict_id + "'>" + s.dict_item_name + "</option>")
+                    if (s.dict_type_code == "001") {
+                        $("#cust_industry").append("<option value='" + s.dict_id + "'>" + s.dict_item_name + "</option>")
                     } else if (s.dict_type_code == "002") {
-                        $("#cust_source").append("<option id='" + s.dict_id + "'>" + s.dict_item_name + "</option>")
+                        $("#cust_source").append("<option value='" + s.dict_id + "'>" + s.dict_item_name + "</option>")
+                    } else if (s.dict_type_code == "006") {
+                        $("#cust_level").append("<option value='" + s.dict_id + "'>" + s.dict_item_name + "</option>")
                     }
                 })
             }, "json");
@@ -74,23 +76,22 @@
                         </td>
                         <td>客户级别 ：</td>
                         <td>
-                            <INPUT class=textbox id=sChannel2
-                                   style="WIDTH: 180px" maxLength=50 name="cust_level">
+                            <select id="cust_level" name="baseDictLevel.dict_id">
+                                <option value="">--请选择--</option>
+                            </select>
                         </td>
                     </TR>
-
                     <TR>
-
                         <td>信息来源 ：</td>
                         <td>
-                            <select id="cust_source">
-                                <option>--请选择--</option>
+                            <select id="cust_source" name="baseDictSource.dict_id">
+                                <option value="">--请选择--</option>
                             </select>
                         </td>
                         <td>所属行业 ：</td>
                         <td>
-                            <select id="cust_industry" name="cust_level">
-                                <option>--请选择--</option>
+                            <select id="cust_industry" name="baseDictIndustry.dict_id">
+                                <option value="">--请选择--</option>
                             </select>
                         </td>
                     </TR>

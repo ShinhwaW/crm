@@ -4,7 +4,9 @@ import cn.shinhwa.crm.dao.UserDao;
 import cn.shinhwa.crm.domain.User;
 import cn.shinhwa.crm.service.UserService;
 import cn.shinhwa.crm.utils.MD5Utils;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
