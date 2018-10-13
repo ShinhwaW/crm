@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <!--解决延迟加载数据的访问异常-->
     <filter>
         <filter-name>OpenSessionInViewFilter</filter-name>
         <filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>

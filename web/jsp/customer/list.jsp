@@ -23,6 +23,7 @@
     <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
+
 <FORM id="customerForm" name="customerForm"
       action="${pageContext.request.contextPath }/customer_findAll.action"
       method=post>
@@ -100,9 +101,10 @@
                                         <TD><s:property value="cust_phone"/></TD>
                                         <TD><s:property value="cust_mobile"/></TD>
                                         <TD>
-                                            <a href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.custId}">修改</a>
-                                            &nbsp;&nbsp;
-                                            <a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.custId}">删除</a>
+                                            <a href="${pageContext.request.contextPath }/customer_modify.action">修改
+                                            </a>&nbsp;&nbsp;
+                                            <a
+                                                    href="${pageContext.request.contextPath }/customer_delete.action?cust_id=<s:property value="cust_id"/>">删除</a>
                                         </TD>
                                     </TR>
                                 </s:iterator>

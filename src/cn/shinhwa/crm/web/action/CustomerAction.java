@@ -3,11 +3,16 @@ package cn.shinhwa.crm.web.action;
 import cn.shinhwa.crm.domain.Customer;
 import cn.shinhwa.crm.domain.PageBean;
 import cn.shinhwa.crm.service.CustomerService;
+import cn.shinhwa.crm.utils.UploadUtils;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import org.apache.commons.io.FileUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+
+import java.io.File;
+import java.io.IOException;
 
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
     private Customer customer = new Customer();
@@ -41,14 +46,48 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
         this.pageSize = pageSize;
     }
 
+    /*
+        文件上传的三个属性
+     */
+
+    private String uploadFileName;
+    private File upload;
+    private String uploadContentType;
+
+    public void setUploadFileName(String uploadFileName) {
+        this.uploadFileName = uploadFileName;
+    }
+
+    public void setUpload(File upload) {
+        this.upload = upload;
+    }
+
+    public void setUploadContentType(String uploadContentType) {
+        this.uploadContentType = uploadContentType;
+    }
+
     public String saveUI() {
         return "saveUI";
     }
 
 
-    public String save() {
+    public String save() throws IOException {
+        if (upload != null) {
+            String path = "E:/workspace_idea/upload";
+            String uuidFileName = UploadUtils.getUuidFileName(uploadFileName);
+            String realPath = UploadUtils.getPath(uuidFileName);
+            String url = path + realPath;
+            File file = new File(url);
+            if (!file.exists()){
+                file.mkdirs();
+            }
+            //文件上传
+            File dictFile = new File(url + "/" + uuidFileName);
+            FileUtils.copyFile(upload,dictFile);
+            customer.setCust_img(url + "/" + uuidFileName);
+        }
         customerService.save(customer);
-        return SUCCESS;
+        return "saveSuccess";
     }
 
     public String findAll() {
@@ -82,4 +121,18 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
         return "findAll";
     }
+
+    public String delete() {
+        //先查询在删除,因为要删除级联信息或者是文件信息等其他信息,需要从其他属性获取删除的对象
+        customer = customerService.findByCustId(customer.getCust_id());
+        if (customer.getCust_img() != null){
+            File file = new File(customer.getCust_img());
+            if (file.exists()){
+                file.delete();
+            }
+        }
+        customerService.delete(customer);
+        return "deleteSuccess";
+    }
+
 }

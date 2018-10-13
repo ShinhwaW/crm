@@ -18,6 +18,7 @@ public class Customer {
 //    private String cust_level;
     private String cust_phone;
     private String cust_mobile;
+    private String cust_img;
 
     private BaseDict baseDictSource;
     private BaseDict baseDictIndustry;
@@ -87,6 +88,14 @@ public class Customer {
 
     public void setBaseDictLevel(BaseDict baseDictLevel) {
         this.baseDictLevel = baseDictLevel;
+    }
+
+    public String getCust_img() {
+        return cust_img;
+    }
+
+    public void setCust_img(String cust_img) {
+        this.cust_img = cust_img;
     }
 
     public Customer() {

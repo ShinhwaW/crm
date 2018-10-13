@@ -14,7 +14,8 @@
 		<!--<property name="cust_level" column="cust_level"/>-->
 		<property name="cust_phone" column="cust_phone"/>
 		<property name="cust_mobile" column="cust_mobile"/>
-		
+		<property name="cust_img" column="cust_img"/>
+
 		<many-to-one name="baseDictSource" class="cn.shinhwa.crm.domain.BaseDict"  column="cust_source"/>
 		<many-to-one name="baseDictIndustry" class="cn.shinhwa.crm.domain.BaseDict" column="cust_industry"/>
 		<many-to-one name="baseDictLevel" class="cn.shinhwa.crm.domain.BaseDict" column="cust_level"/>
