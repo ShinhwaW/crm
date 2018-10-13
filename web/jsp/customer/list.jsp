@@ -9,16 +9,46 @@
     <LINK href="${pageContext.request.contextPath }/css/Style.css" type=text/css rel=stylesheet>
     <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
           rel=stylesheet>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.11.3.min.js"></script>
     <SCRIPT language=javascript>
         function to_page(page) {
             if (page) {
                 $("#page").val(page);
             }
             document.customerForm.submit();
-
         }
     </SCRIPT>
+
+    <script type="text/javascript">
+        $(function () {
+            // 页面加载函数就会执行：
+            // 页面加载，异步查询字典数据：
+            // 加载客户来源
+            $.post("${pageContext.request.contextPath }/baseDict_findByTypeCode.action", {"dict_type_code": "002"}, function (data) {
+                // 遍历json的数据:
+                $(data).each(function (i, n) {
+                    $("#cust_source").append("<option value='" + n.dict_id + "'>" + n.dict_item_name + "</option>");
+                });
+
+                $("#cust_source option[value='${model.baseDictSource.dict_id}']").prop("selected", "selected");
+            }, "json");
+            $.post("${pageContext.request.contextPath }/baseDict_findByTypeCode.action", {"dict_type_code": "006"}, function (data) {
+                // 遍历json的数据:
+                $(data).each(function (i, n) {
+                    $("#cust_level").append("<option value='" + n.dict_id + "'>" + n.dict_item_name + "</option>");
+                });
+                $("#cust_level option[value='${model.baseDictLevel.dict_id}']").prop("selected", "selected");
+            }, "json");
+            $.post("${pageContext.request.contextPath }/baseDict_findByTypeCode.action", {"dict_type_code": "001"}, function (data) {
+                // 遍历json的数据:
+                $(data).each(function (i, n) {
+                    $("#cust_industry").append("<option value='" + n.dict_id + "'>" + n.dict_item_name + "</option>");
+                });
+                $("#cust_industry option[value='${model.baseDictIndustry.dict_id}']").prop("selected", "selected");
+            }, "json");
+        });
+
+    </script>
 
     <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
@@ -63,9 +93,28 @@
                                 <TBODY>
                                 <TR>
                                     <TD>客户名称：</TD>
-                                    <TD><INPUT class=textbox id=sChannel2
-                                               style="WIDTH: 80px" maxLength=50 name="custName"></TD>
-
+                                    <TD>
+                                        <INPUT class=textbox id=sChannel2
+                                               style="WIDTH: 80px" maxLength=50 name="cust_name"
+                                               value="<s:property value="model.cust_name"/>"></TD>
+                                    <TD>客户来源：</TD>
+                                    <TD>
+                                        <select id="cust_source" name="baseDictSource.dict_id">
+                                            <option value="">-请选择-</option>
+                                        </select>
+                                    </TD>
+                                    <TD>客户级别：</TD>
+                                    <TD>
+                                        <select id="cust_level" name="baseDictLevel.dict_id">
+                                            <option value="">-请选择-</option>
+                                        </select>
+                                    </TD>
+                                    <TD>客户所属行业：</TD>
+                                    <TD>
+                                        <select id="cust_industry" name="baseDictIndustry.dict_id">
+                                            <option value="">-请选择-</option>
+                                        </select>
+                                    </TD>
                                     <TD><INPUT class=button id=sButton2 type=submit
                                                value=" 筛选 " name=sButton2></TD>
                                 </TR>

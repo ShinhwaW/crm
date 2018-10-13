@@ -91,34 +91,39 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
     }
 
     public String findAll() {
-        //接收参数:分页参数
-        //最好使用DetachedCriteria对象（条件查询--带分页）
+        // 接收参数：分页参数
+        // 最好使用DetachedCriteria对象（条件查询--带分页）
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Customer.class);
-        if (customer.getCust_name() != null && !"".equals(customer.getCust_name())) {
+        // 设置条件：（在web层设置条件）
+        if (customer.getCust_name() != null) {
+            // 输入名称:
             detachedCriteria.add(Restrictions.like("cust_name", "%" + customer.getCust_name() + "%"));
         }
         if (customer.getBaseDictSource() != null) {
-            if (customer.getBaseDictSource().getDict_id() != null && !"".equals(customer.getBaseDictSource().getDict_id())) {
-                detachedCriteria.add(Restrictions.eq("baseDictSource.dict_id",
-                        customer.getBaseDictSource().getDict_id()));
+            if (customer.getBaseDictSource().getDict_id() != null
+                    && !"".equals(customer.getBaseDictSource().getDict_id())) {
+                detachedCriteria
+                        .add(Restrictions.eq("baseDictSource.dict_id", customer.getBaseDictSource().getDict_id()));
             }
+
         }
         if (customer.getBaseDictLevel() != null) {
-            if (customer.getBaseDictLevel().getDict_id() != null && !"".equals(customer.getBaseDictLevel().getDict_id())) {
-                detachedCriteria.add(Restrictions.eq("getBaseDictLevel.dict_id",
-                        customer.getBaseDictLevel().getDict_id()));
+            if (customer.getBaseDictLevel().getDict_id() != null
+                    && !"".equals(customer.getBaseDictLevel().getDict_id())) {
+                detachedCriteria
+                        .add(Restrictions.eq("baseDictLevel.dict_id", customer.getBaseDictLevel().getDict_id()));
             }
         }
-        if (customer.getBaseDictIndustry() != null) {
-            if (customer.getBaseDictIndustry().getDict_id() != null && !"".equals(customer.getBaseDictIndustry().getDict_id())) {
-                detachedCriteria.add(Restrictions.eq("getBaseDictIndustry.dict_id",
-                        customer.getBaseDictIndustry().getDict_id()));
+        if (customer.getBaseDictIndustry() != null && customer.getBaseDictIndustry().getDict_id() != null) {
+            if (customer.getBaseDictIndustry().getDict_id() != null
+                    && !"".equals(customer.getBaseDictIndustry().getDict_id())) {
+                detachedCriteria
+                        .add(Restrictions.eq("baseDictIndustry.dict_id", customer.getBaseDictIndustry().getDict_id()));
             }
         }
-
-        PageBean<Customer> pageBean = customerService.findByPage(detachedCriteria,currPage,pageSize);
+        // 调用业务层查询:
+        PageBean<Customer> pageBean = customerService.findByPage(detachedCriteria, currPage, pageSize);
         ActionContext.getContext().getValueStack().push(pageBean);
-
         return "findAll";
     }
 
