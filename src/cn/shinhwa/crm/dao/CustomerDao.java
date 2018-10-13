@@ -15,4 +15,6 @@ public interface CustomerDao {
     Customer findByCustId(Long cust_id);
 
     void delete(Customer customer);
+
+    void update(Customer customer);
 }

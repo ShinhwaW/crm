@@ -69,7 +69,6 @@
 
                 <TABLE cellSpacing=0 cellPadding=5 border=0>
 
-
                     <TR>
                         <td>客户名称：</td>
                         <td>

@@ -101,7 +101,8 @@
                                         <TD><s:property value="cust_phone"/></TD>
                                         <TD><s:property value="cust_mobile"/></TD>
                                         <TD>
-                                            <a href="${pageContext.request.contextPath }/customer_modify.action">修改
+                                            <a
+                                                    href="${pageContext.request.contextPath }/customer_edit.action?cust_id=<s:property value="cust_id"/>">修改
                                             </a>&nbsp;&nbsp;
                                             <a
                                                     href="${pageContext.request.contextPath }/customer_delete.action?cust_id=<s:property value="cust_id"/>">删除</a>
@@ -149,7 +150,7 @@
 
                                                 </B>&nbsp;
                                                 <s:if test="currPage != totalPage">
-                                                [<A href="javascript:to_page(<s:property value='currPage+1'/>)">后一页</A>]
+                                                    [<A href="javascript:to_page(<s:property value='currPage+1'/>)">后一页</A>]
                                                     [<A href="javascript:to_page(<s:property value='totalPage'/>)">尾页</A>]
                                                 </s:if>
 												到

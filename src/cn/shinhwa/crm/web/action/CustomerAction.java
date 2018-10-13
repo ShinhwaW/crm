@@ -135,4 +135,42 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
         return "deleteSuccess";
     }
 
+    public String edit() {
+        customer = customerService.findByCustId(customer.getCust_id());
+        System.out.println(customer.toString());
+        // 将customer传递到页面：
+        // 两种方式：一种，手动压栈。二种，因为模型驱动的对象，默认在栈顶。
+        // 如果使用第一种方式：回显数据: <s:property value="cust_name"/> <s: name="cust_name"
+        // value="">
+        // 如果使用第二种方式：回显数据: <s:property value="model.cust_name"/>
+        // ActionContext.getContext().getValueStack().push(customer);
+        // 跳转页面
+
+        return "editSuccess";
+    }
+
+    public  String update() throws IOException {
+        if (upload != null) {
+            String cust_img = customer.getCust_img();
+            if (cust_img != null || !"".equals(cust_img)){
+                File file =new File(cust_img);
+                file.delete();
+            }
+            String path = "E:/workspace_idea/upload";
+            String uuidFileName = UploadUtils.getUuidFileName(uploadFileName);
+            String realPath = UploadUtils.getPath(uuidFileName);
+            String url = path + realPath;
+            File file = new File(url);
+            if (!file.exists()){
+                file.mkdirs();
+            }
+            //文件上传
+            File dictFile = new File(url + "/" + uuidFileName);
+            FileUtils.copyFile(upload,dictFile);
+            customer.setCust_img(url + "/" + uuidFileName);
+        }
+        customerService.update(customer);
+        return "updateSuccess";
+    }
+
 }
