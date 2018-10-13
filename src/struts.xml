@@ -14,6 +14,8 @@
 
         <action name="customer_*" class="cn.shinhwa.crm.web.action.CustomerAction" method="{1}">
             <result name="saveUI">/jsp/customer/add.jsp</result>
+			<result name="success" type="redirectAction">customer_findAll</result>
+            <result name="findAll">/jsp/customer/list.jsp</result>
         </action>
         <action name="baseDict_*" class="cn.shinhwa.crm.web.action.BaseDictAction" method="{1}">
         </action>
