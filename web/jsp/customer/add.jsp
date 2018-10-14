@@ -10,7 +10,7 @@
     <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
           rel=stylesheet>
     <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript">
         // 页面加载就会执行
         //页面加载异步查询字典数据

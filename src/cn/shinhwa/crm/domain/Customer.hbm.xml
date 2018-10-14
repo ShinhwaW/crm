@@ -19,6 +19,11 @@
 		<many-to-one name="baseDictSource" class="cn.shinhwa.crm.domain.BaseDict"  column="cust_source"/>
 		<many-to-one name="baseDictIndustry" class="cn.shinhwa.crm.domain.BaseDict" column="cust_industry"/>
 		<many-to-one name="baseDictLevel" class="cn.shinhwa.crm.domain.BaseDict" column="cust_level"/>
-
+		
+		<set name="linkMans" cascade="delete" inverse="true">
+			<key column="lkm_cust_id"/>
+			<one-to-many class="cn.shinhwa.crm.domain.LinkMan"/>
+		</set>
+		
 	</class>
 </hibernate-mapping>

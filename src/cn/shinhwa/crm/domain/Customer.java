@@ -1,5 +1,8 @@
 package cn.shinhwa.crm.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Customer {
     /*
   `cust_id` BIGINT(32) NOT NULL AUTO_INCREMENT COMMENT '客户编号(主键)',
@@ -24,15 +27,16 @@ public class Customer {
     private BaseDict baseDictIndustry;
     private BaseDict baseDictLevel;
 
-    public Customer(Long cust_id, String cust_name, String cust_phone, String cust_mobile, BaseDict baseDictSource, BaseDict baseDictIndustry, BaseDict baseDictLevel) {
-        this.cust_id = cust_id;
-        this.cust_name = cust_name;
-        this.cust_phone = cust_phone;
-        this.cust_mobile = cust_mobile;
-        this.baseDictSource = baseDictSource;
-        this.baseDictIndustry = baseDictIndustry;
-        this.baseDictLevel = baseDictLevel;
+    private Set<LinkMan> linkMans = new HashSet<>();
+
+    public Set<LinkMan> getLinkMans() {
+        return linkMans;
     }
+
+    public void setLinkMans(Set<LinkMan> linkMans) {
+        this.linkMans = linkMans;
+    }
+
 
     public Long getCust_id() {
         return cust_id;
@@ -101,6 +105,19 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(Long cust_id, String cust_name, String cust_phone, String cust_mobile, String cust_img,
+                    BaseDict baseDictSource, BaseDict baseDictIndustry, BaseDict baseDictLevel, Set<LinkMan> linkMans) {
+        this.cust_id = cust_id;
+        this.cust_name = cust_name;
+        this.cust_phone = cust_phone;
+        this.cust_mobile = cust_mobile;
+        this.cust_img = cust_img;
+        this.baseDictSource = baseDictSource;
+        this.baseDictIndustry = baseDictIndustry;
+        this.baseDictLevel = baseDictLevel;
+        this.linkMans = linkMans;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -108,9 +125,11 @@ public class Customer {
                 ", cust_name='" + cust_name + '\'' +
                 ", cust_phone='" + cust_phone + '\'' +
                 ", cust_mobile='" + cust_mobile + '\'' +
+                ", cust_img='" + cust_img + '\'' +
                 ", baseDictSource=" + baseDictSource +
                 ", baseDictIndustry=" + baseDictIndustry +
                 ", baseDictLevel=" + baseDictLevel +
+                ", linkMans=" + linkMans +
                 '}';
     }
 }

@@ -33,5 +33,13 @@
         </action>
         <action name="baseDict_*" class="cn.shinhwa.crm.web.action.BaseDictAction" method="{1}">
         </action>
+        <action name="linkMan_*" class="cn.shinhwa.crm.web.action.LinkManAction" method="{1}">
+            <result name="findAll">jsp/linkman/list.jsp</result>
+            <result name="saveSuccess" type="redirectAction">linkMan_findAll.action</result>
+            <result name="editSuccess" type="redirectAction">linkMan_findAll.action</result>
+            <result name="deleteSuccess" type="redirectAction">linkMan_findAll.action</result>
+			<result name="saveUI">jsp/linkman/add.jsp</result>
+			<result name="editUI">jsp/linkman/edit.jsp</result>
+        </action>
 	</package>
 </struts>
