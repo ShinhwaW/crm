@@ -45,7 +45,7 @@ public class LinkManServiceImpl implements LinkManService {
 
     @Override
     public LinkMan findById(Long lkm_id) {
-        return linkManDao.findById(lkm_id);
+        return (LinkMan) linkManDao.findById(lkm_id);
     }
 
     @Override

@@ -2,17 +2,14 @@ package cn.shinhwa.crm.dao.impl;
 
 import cn.shinhwa.crm.dao.UserDao;
 import cn.shinhwa.crm.domain.User;
-import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
-public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
+public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
-    @Override
-    public void save(User user) {
-        this.getHibernateTemplate().save(user);
-    }
+    /*public UserDaoImpl() {
+        super(User.class);
+    }*/
 
     @Override
     public User find(User user) {
