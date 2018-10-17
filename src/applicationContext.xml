@@ -120,8 +120,10 @@
     </bean>
 
     <bean id="saleVisitAction" class="cn.shinhwa.crm.web.action.SaleVisitAction" scope="prototype">
-        <property name="saleVisitService" ref="saleVisitService">
-        </property>
+        <property name="saleVisitService" ref="saleVisitService" />
+        <property name="customerService" ref="customerService" />
+        <property name="userService" ref="userService" />
+
     </bean>
 
     <bean id="saleVisitService" class="cn.shinhwa.crm.service.impl.SaleVisitServiceImpl">

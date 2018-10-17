@@ -6,4 +6,6 @@ import org.hibernate.criterion.DetachedCriteria;
 
 public interface SaleVisitService {
     PageBean<SaleVisit> findByPage(DetachedCriteria detachedCriteria, Integer currPage, Integer pageSize);
+
+    void save(SaleVisit saleVisit);
 }

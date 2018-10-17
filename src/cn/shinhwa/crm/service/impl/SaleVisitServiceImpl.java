@@ -28,8 +28,13 @@ public class SaleVisitServiceImpl implements SaleVisitService {
         }
         pageBean.setTotalCount(totalCount);
         pageBean.setTotalPage(totalPage.intValue());
-        List<SaleVisit> list = saleVisitDao.findAll();
+        List<SaleVisit> list = saleVisitDao.findByPage(detachedCriteria, begin, pageSize);
         pageBean.setList(list);
         return pageBean;
+    }
+
+    @Override
+    public void save(SaleVisit saleVisit) {
+        saleVisitDao.save(saleVisit);
     }
 }

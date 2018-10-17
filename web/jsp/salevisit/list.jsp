@@ -20,6 +20,18 @@
         }
     </SCRIPT>
 
+    <!-- 日期插件，使用jquery -->
+    <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/jquery/jquery.datepick.css" type="text/css">
+    <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery.datepick.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery.datepick-zh-CN.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#visit_time').datepick({dateFormat: 'yy-mm-dd'});
+            $('#visit_end_time').datepick({dateFormat: 'yy-mm-dd'});
+        });
+    </script>
+
     <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
@@ -63,12 +75,12 @@
                                 <TR>
                                     <TD>拜访时间：从</TD>
                                     <TD>
-                                       <input type="text" id="visit_time" name="visit_time" readonly="readonly" value="<s:date name="visit_time" format="yyyy-MM-dd"  /> "  >
+                                        <input type="text" id="visit_time" name="visit_time" readonly="readonly" value="<s:date name="visit_time" format="yyyy-MM-dd"/>"/>
                                     </TD>&nbsp;
 
                                     <TD>到 ：</TD>
                                     <TD>
-                                        <input type="text" id="visit_time" name="visit_end_time" readonly="readonly" value="<s:date name="visit_end_time" format="yyyy-MM-dd"  /> "  >
+                                        <input type="text" id="visit_end_time" name="visit_end_time" readonly="readonly" value="<s:date name="visit_end_time" format="yyyy-MM-dd"/>"/>
                                     </TD>&nbsp;
 
 
@@ -102,12 +114,11 @@
                                         <TD><s:property value="user.user_name"/></TD>
                                         <TD><s:property value="customer.cust_name"/></TD>
 
-                                        <TD><s:property value="visit_time"/></TD>
+                                        <TD><s:date name="visit_time" format="yyyy-MM-dd"/></TD>
                                         <TD><s:property value="visit_interviewee"/></TD>
                                         <TD><s:property value="visit_addr"/></TD>
                                         <TD><s:property value="visit_detail"/></TD>
-                                        <TD><s:property value="visit_nexttime"/></TD>
-
+                                        <TD><s:date name="visit_nexttime" format="yyyy-MM-dd"/></TD>
 
                                         <TD>
                                             <a href="${pageContext.request.contextPath }/linkMan_editUI.action?lkm_id=<s:property value='lkm_id'/> ">修改

@@ -6,6 +6,8 @@ import cn.shinhwa.crm.service.UserService;
 import cn.shinhwa.crm.utils.MD5Utils;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
@@ -19,6 +21,11 @@ public class UserServiceImpl implements UserService {
         user.setUser_password(MD5Utils.md5(user.getUser_password()));
         user.setUser_state("1");
         userDao.save(user);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userDao.findAll();
     }
 
     @Override

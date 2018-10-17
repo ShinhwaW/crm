@@ -11,9 +11,22 @@
           rel=stylesheet>
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.11.3.min.js"></script>
     <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
+
+
+    <!-- 日期插件，使用jquery -->
+    <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/jquery/jquery.datepick.css" type="text/css">
+    <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery.datepick.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery.datepick-zh-CN.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#visit_time').datepick({dateFormat: 'yy-mm-dd'});
+            $('#visit_nexttime').datepick({dateFormat: 'yy-mm-dd'});
+        });
+    </script>
 </HEAD>
 <BODY>
-<s:form id="form1" name="form1" action="linkMan_save.action" namespace="/" method="POST" theme="simple">
+<s:form id="form1" name="form1" action="saleVisit_save.action" namespace="/" method="POST" theme="simple">
 
     <TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
         <TBODY>
@@ -44,62 +57,54 @@
                 <TABLE cellSpacing=0 cellPadding=5 border=0>
                     <tr>
                         <td>拜访客户：</td>
-                        <td colspan="3">
-                                <s:select list="list" name="customer.cust_id" headerKey="" headerValue="-请选择-" listKey="cust_id"
+                        <td >
+                                <s:select list="customerList" name="customer.cust_id" headerKey="" headerValue="-请选择-"
+                                          listKey="cust_id"
                                           listValue="cust_name"/>
                             </td>
                         <td>负责人：</td>
-                        <td colspan="3">
-                            <s:select list="list" name="customer.cust_id" headerKey="" headerValue="-请选择-" listKey="cust_id"
-                                      listValue="cust_name"/>
+                        <td>
+                            <s:select list="userList" name="user.user_id" headerKey="" headerValue="-请选择-" listKey="user_id"
+                                      listValue="user_name"/>
                         </td>
                     </tr>
                     <TR>
-                        <td>联系人名称：</td>
+                        <td>拜访时间：</td>
+                        <td>
+                            <s:textfield readonly="true" id="visit_time" cssClass="textbox" cssStyle="WIDTH: 180px"
+                                         maxLength="50"
+                                         name="visit_time"/>
+                        </td>
+                        <td>被拜访人：</td>
                         <td>
                             <s:textfield cssClass="textbox" id="sChannel2" cssStyle="WIDTH: 180px" maxLength="50"
-                                         name="lkm_name"/>
-                        </td>
-                        <td>联系人性别：</td>
-                        <td>
-                            <s:radio list="#{ '1':'男','2':'女' }" name="lkm_gender"/>
+                                         name="visit_interviewee"/>
                         </td>
                     </TR>
                     <TR>
-                        <td>联系人办公电话 ：</td>
+                        <td>拜访地点 ：</td>
                         <td>
                             <s:textfield cssClass="textbox" id="sChannel2" cssStyle="WIDTH: 180px" maxLength="50"
-                                          name="lkm_phone"/>
+                                          name="visit_addr"/>
                         </td>
-                        <td>联系人手机 ：</td>
+                        <td>下次拜访时间 ：</td>
                         <td>
-                            <s:textfield cssClass="textbox" id="sChannel2" cssStyle="WIDTH: 180px" maxLength="50"
-                                         name="lkm_mobile"/>
+                            <s:textfield readonly="true" id="visit_nexttime" cssClass="textbox" cssStyle="WIDTH: 180px" maxLength="50"
+                                         name="visit_nexttime"/>
                         </td>
+
                     </TR>
                     <TR>
-                        <td>联系人邮箱 ：</td>
+                        <td>拜访详情 ：</td>
                         <td>
-                            <s:textfield cssClass="textbox" id="sChannel2" cssStyle="WIDTH: 180px" maxLength="50"
-                                         name="lkm_email"/>
+                            <s:textarea cssClass="textbox" id="sChannel2"
+                                         cssStyle="WIDTH: 230px;height: 30px;"
+                                         maxLength="200"
+                                         name="visit_detail"/>
                         </td>
-                        <td>联系人QQ ：</td>
-                        <td>
-                            <s:textfield cssClass="textbox" id="sChannel2" cssStyle="WIDTH: 180px" maxLength="50"
-                                         name="lkm_qq"/>
-                        </td>
+
                     </TR>
-                    <TR>
-                        <td>联系人职位 ：</td>
-                        <td>
-                            <s:textfield cssClass="textbox" id="sChannel2" cssStyle="WIDTH: 180px" maxLength="50"
-                                         name="lkm_position"/>
-                        </td>
-                        <td>联系人备注 ：</td>
-                        <td>
-                            <s:textarea name="lkm_memo" rows="2" cols="20"/>
-                        </td>
-                    </TR>
+
                     <tr>
                         <td rowspan=2>
                             <INPUT class=button id=sButton2 type=submit

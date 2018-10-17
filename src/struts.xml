@@ -43,7 +43,8 @@
         </action>
 		<action name="saleVisit_*" class="cn.shinhwa.crm.web.action.SaleVisitAction" method="{1}">
 			<result name="findAll">jsp/salevisit/list.jsp</result>
-			<result name="saveUI">jsp/salevist/add.jsp</result>
+			<result name="saveUI">jsp/salevisit/add.jsp</result>
+			<result name="saveSuccess" type="redirectAction">saleVisit_findAll.action</result>
 		</action>
 	</package>
 </struts>
