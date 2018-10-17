@@ -44,6 +44,7 @@
                 <value>cn/shinhwa/crm/domain/Customer.hbm.xml</value>
                 <value>cn/shinhwa/crm/domain/BaseDict.hbm.xml</value>
                 <value>cn/shinhwa/crm/domain/LinkMan.hbm.xml</value>
+                <value>cn/shinhwa/crm/domain/SaleVisit.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -117,6 +118,22 @@
         <property name="sessionFactory" ref="sessionFactory">
         </property>
     </bean>
+
+    <bean id="saleVisitAction" class="cn.shinhwa.crm.web.action.SaleVisitAction" scope="prototype">
+        <property name="saleVisitService" ref="saleVisitService">
+        </property>
+    </bean>
+
+    <bean id="saleVisitService" class="cn.shinhwa.crm.service.impl.SaleVisitServiceImpl">
+        <property name="saleVisitDao" ref="saleVisitDao">
+        </property>
+    </bean>
+
+    <bean id="saleVisitDao" class="cn.shinhwa.crm.dao.impl.SaleVisitDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory">
+        </property>
+    </bean>
+
 
 
 
