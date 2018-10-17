@@ -26,6 +26,12 @@
             <%--window.open("${ pageContext.request.contextPath }/regist.jsp")--%>
         }
     </script>
+
+    <script type="text/javascript">
+        if (window!=top){ // 判断当前的window对象是否是top对象
+            top.location.href =window.location.href; // 如果不是，将top对象的网址自动导向被嵌入网页的网址
+        }
+    </script>
     <META content="MSHTML 6.00.6000.16809" name=GENERATOR>
 </HEAD>
 <BODY>

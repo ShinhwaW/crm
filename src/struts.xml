@@ -9,10 +9,26 @@
 	<constant name="struts.multipart.maxSize" value="5242880"/>
 
 	<package name="crm" extends="struts-default" namespace="/">
+        
+        <interceptors>
+            <interceptor name="privilegeInterceptor" class="cn.shinhwa.crm.web.interceptor.PrivilegeInterceptor"/>
+        </interceptors>
+
+        <global-results>
+            <result name="login">/login.jsp</result>
+        </global-results>
+        
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="login">/login.jsp</result>
 			<result name="success" type="redirect">/index.jsp</result>
 			<result name="quit" type="redirect">/login.jsp</result>
+
+            <interceptor-ref name="privilegeInterceptor">
+                <param name="excludeMethods">regist,login</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+
+
 		</action>
 
         <action name="customer_*" class="cn.shinhwa.crm.web.action.CustomerAction" method="{1}">
@@ -25,13 +41,16 @@
 			<result name="input">/jsp/customer/add.jsp</result>
 
 			<!--修改文件上传单个文件的大小限制和文件类型-->
-			<interceptor-ref name="defaultStack">
+            <interceptor-ref name="privilegeInterceptor"/>
+            <interceptor-ref name="defaultStack">
 				<param name="fileUpload.maximumSize">2097152</param>
 				<param name="fileUpload.allowedExtensions">.jpg</param>
 			</interceptor-ref>
 
         </action>
         <action name="baseDict_*" class="cn.shinhwa.crm.web.action.BaseDictAction" method="{1}">
+            <interceptor-ref name="privilegeInterceptor"/>
+            <interceptor-ref name="defaultStack"/>
         </action>
         <action name="linkMan_*" class="cn.shinhwa.crm.web.action.LinkManAction" method="{1}">
             <result name="findAll">jsp/linkman/list.jsp</result>
@@ -40,11 +59,15 @@
             <result name="deleteSuccess" type="redirectAction">linkMan_findAll.action</result>
 			<result name="saveUI">jsp/linkman/add.jsp</result>
 			<result name="editUI">jsp/linkman/edit.jsp</result>
+            <interceptor-ref name="privilegeInterceptor"/>
+            <interceptor-ref name="defaultStack"/>
         </action>
 		<action name="saleVisit_*" class="cn.shinhwa.crm.web.action.SaleVisitAction" method="{1}">
 			<result name="findAll">jsp/salevisit/list.jsp</result>
 			<result name="saveUI">jsp/salevisit/add.jsp</result>
 			<result name="saveSuccess" type="redirectAction">saleVisit_findAll.action</result>
+            <interceptor-ref name="privilegeInterceptor"/>
+            <interceptor-ref name="defaultStack"/>
 		</action>
 	</package>
 </struts>
