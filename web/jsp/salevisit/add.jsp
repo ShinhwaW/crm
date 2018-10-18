@@ -26,7 +26,7 @@
     </script>
 </HEAD>
 <BODY>
-<s:form id="form1" name="form1" action="saleVisit_save.action" namespace="/" method="POST" theme="simple">
+<s:form id="form1" name="form1" action="saleVisit_save" namespace="/" method="post" theme="simple">
 
     <TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
         <TBODY>
